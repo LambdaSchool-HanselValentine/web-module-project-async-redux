@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { getRandomJoke } from "../actions/actions";
 
 const Jokes = ({ joke, fetching, error, getRandomJoke }) => {
+	// const { joke, fetching, error, getRandomJoke } = props;
+
+	useEffect(() => {
+		getRandomJoke();
+	}, []);
+
 	if (error) {
 		return <div> error</div>;
 	}
@@ -12,8 +18,7 @@ const Jokes = ({ joke, fetching, error, getRandomJoke }) => {
 	}
 	return (
 		<div>
-			{" "}
-			joke{" "}
+			{joke}
 			<button
 				onClick={() => {
 					getRandomJoke();
