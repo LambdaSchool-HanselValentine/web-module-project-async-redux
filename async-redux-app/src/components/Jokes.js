@@ -1,31 +1,30 @@
 import React, { useEffect } from "react";
+import "./components.css";
 import { connect } from "react-redux";
 
 import { getRandomJoke } from "../actions/actions";
 
 const Jokes = ({ joke, fetching, error, getRandomJoke }) => {
-	// const { joke, fetching, error, getRandomJoke } = props;
-
 	useEffect(() => {
 		getRandomJoke();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	if (error) {
-		return <div> error</div>;
+		return <div className="error-wrapper"> error</div>;
 	}
 	if (fetching) {
-		return <div> fetching</div>;
+		return <div className="fetching-wrapper"> fetching</div>;
 	}
 	return (
-		<div>
-			{joke}
+		<div className="joke-wrapper">
+			<div>{joke}</div>
 			<button
 				onClick={() => {
 					getRandomJoke();
 				}}
 			>
-				{" "}
-				fetch joke
+				give me my pill
 			</button>
 		</div>
 	);
